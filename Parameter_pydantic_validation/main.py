@@ -42,7 +42,7 @@ Base.metadata.create_all(bind=engine)
 
 
 def get_db():
-    db = SessionLocal()
+    db = SessionLocal() 
     try:
         yield db
     finally:
@@ -51,12 +51,12 @@ def get_db():
 
 
 @app.get("/stations")
-def get_students(db: Session = Depends(get_db)):
+def get_stations(db: Session = Depends(get_db)):
     return db.query(Stations).all()
 
 
 @app.get("/stations/{id}")
-def get_student(id: int,
+def get_station(id: int,
                 db: Session = Depends(get_db)):
     return db.query(Stations)\
         .filter(Stations.id == id)\
@@ -92,7 +92,7 @@ def delete_station(
         id: int,
         db: Session = Depends(get_db)
 ):
-    student = db.query(Stations)\
+    Stations = db.query(Stations)\
         .filter(Stations.id == id)\
         .first()
 
